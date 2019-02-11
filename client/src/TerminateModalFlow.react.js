@@ -23,7 +23,7 @@ export default class TerminateModalFlow extends React.Component {
     terminateAccountError: React.PropTypes.func,
     terminateAccountStatus: React.PropTypes.object,
     resetTerminateAccountStatus: React.PropTypes.func,
-    rediectToHomepage: React.PropTypes.func,
+    redirectToHomepage: React.PropTypes.func,
   }
 
   state = {
@@ -40,7 +40,7 @@ export default class TerminateModalFlow extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (LoadState.isLoaded(nextProps.terminateAccountStatus)) {
-      this.props.rediectToHomepage()
+      this.props.redirectToHomepage()
     }
   }
 

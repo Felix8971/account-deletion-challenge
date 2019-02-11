@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import './index.css'
-import MockDataProvider from './MockDataProvider'
-import TerminateModalFlow from './TerminateModalFlow.react'
+import './index.css';
+import MockDataProvider from './MockDataProvider';
+import TerminateModalFlow from './TerminateModalFlow.react';
 
 ReactDOM.render(
   <MockDataProvider>
