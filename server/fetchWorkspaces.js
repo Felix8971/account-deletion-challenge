@@ -21,7 +21,7 @@ module.exports = functions.https.onRequest((request, response) =>
     if (Math.random() <= 0.5) {
       await sleep(3000)
     }
-
+    
     response.send({
       requiredTransferWorkspaces: [
         {

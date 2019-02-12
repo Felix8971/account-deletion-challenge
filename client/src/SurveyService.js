@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { URL } from './constants.js';
 
 const CANCEL_WORKSPACE = {
   PAGE_ID: '48414504',
@@ -78,19 +79,23 @@ export const submitToSurveyMonkeyDeleteAccount = async ({
   feedbackRefs,
   comment,
 }) => {
-  const surveyPayload = getSurveyPayload(feedbackRefs, comment)
-
+  const surveyPayload = getSurveyPayload(feedbackRefs, comment);
+  if ( surveyPayload.pages[0].questions[0].answers.length === 0 ) {
+    surveyPayload.pages[0].questions[0].answers = [{choice_id: CANCEL_WORKSPACE.CHOICE_ID.DONT_NEED}];
+  }
   const response = await window.fetch(
-    'https://us-central1-tw-account-deletion-challenge.cloudfunctions.net/submitSurvey',
+    `${URL}/submitSurvey`,
     {
       method: 'POST',
       mode: 'cors',
+      Accept: 'application/json',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(surveyPayload),
     }
   )
+  debugger;
   if (response.status !== 200) {
     throw new Error('Error submitting SurveyMonkey')
   }

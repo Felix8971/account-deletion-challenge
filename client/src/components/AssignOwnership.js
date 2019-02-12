@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import * as LoadState from './LoadState'
+import * as LoadState from '../LoadState'
 
 export default class AssignOwnership extends React.Component {
   static propTypes = {
@@ -25,7 +25,7 @@ export default class AssignOwnership extends React.Component {
     const user = this.props.workspace.transferableMembers.find(
       user => user._id === e.target.value
     )
-    this.props.onAssignToUser(this.props.workspace, user)
+    this.props.onAssignToUser(this.props.workspace, user);
   }
 
   render() {

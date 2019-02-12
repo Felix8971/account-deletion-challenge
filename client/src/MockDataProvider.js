@@ -2,6 +2,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import * as LoadState from './LoadState'
+import { URL } from './constants.js';
+
+console.log(URL);
 
 export default class MockDataProvider extends React.Component {
   static propTypes = {
@@ -28,14 +31,15 @@ export default class MockDataProvider extends React.Component {
 
       fetchRelatedWorkspaces: async () => {
         const response = await window.fetch(
-          `https://us-central1-tw-account-deletion-challenge.cloudfunctions.net/fetchWorkspaces?userId=${
+          `${URL}/fetchWorkspaces?userId=${
             this.state.user._id
           }`,
           {
             mode: 'cors',
           }
         )
-        const data = await response.json()
+        const data = await response.json();
+        debugger;
         this.setState({
           loading: false,
           requiredTransferWorkspaces: data.requiredTransferWorkspaces,
@@ -60,7 +64,7 @@ export default class MockDataProvider extends React.Component {
           },
           async () => {
             const response = await window.fetch(
-              'https://us-central1-tw-account-deletion-challenge.cloudfunctions.net/checkOwnership',
+              `${URL}/checkOwnership`,
               {
                 method: 'POST',
                 mode: 'cors',
@@ -98,7 +102,7 @@ export default class MockDataProvider extends React.Component {
       terminateAccount: async payload => {
         // Note that there is 30% chance of getting error from the server
         const response = await window.fetch(
-          'https://us-central1-tw-account-deletion-challenge.cloudfunctions.net/terminateAccount',
+          `${URL}/terminateAccount`,
           {
             method: 'POST',
             mode: 'cors',
@@ -142,6 +146,24 @@ export default class MockDataProvider extends React.Component {
         window.location = 'http://www.example.com/'
       },
     }
+  }
+
+
+  fetchRelatedWorkspaces = async () => {
+    const response = await window.fetch(
+      `${URL}/fetchWorkspaces?userId=${
+        this.state.user._id
+      }`,
+      {
+        mode: 'cors',
+      }
+    )
+    const data = await response.json();
+    return {
+      loading: false,
+      requiredTransferWorkspaces: data.requiredTransferWorkspaces,
+      deleteWorkspaces: data.deleteWorkspaces,
+    };
   }
 
   render() {
