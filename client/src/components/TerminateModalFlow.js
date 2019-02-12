@@ -96,7 +96,6 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   submitSurvey = () => {
-    debugger;
     if(!_.isEmpty(this.refs)) {
       const surveyPayload = {
         feedbackRefs: this.getRefsValues(this.refs, 'feedbackForm'),

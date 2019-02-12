@@ -80,9 +80,12 @@ export const submitToSurveyMonkeyDeleteAccount = async ({
   comment,
 }) => {
   const surveyPayload = getSurveyPayload(feedbackRefs, comment);
+<<<<<<< HEAD
   if ( surveyPayload.pages[0].questions[0].answers.length === 0 ) {
     surveyPayload.pages[0].questions[0].answers = [{choice_id: CANCEL_WORKSPACE.CHOICE_ID.DONT_NEED}];
   }
+=======
+>>>>>>> f8b426c51c13e529b0c18181968373762b594e86
   const response = await window.fetch(
     `${URL}/submitSurvey`,
     {
