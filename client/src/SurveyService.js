@@ -78,19 +78,20 @@ export const submitToSurveyMonkeyDeleteAccount = async ({
   feedbackRefs,
   comment,
 }) => {
-  const surveyPayload = getSurveyPayload(feedbackRefs, comment)
-
+  const surveyPayload = getSurveyPayload(feedbackRefs, comment);
   const response = await window.fetch(
     'https://us-central1-tw-account-deletion-challenge.cloudfunctions.net/submitSurvey',
     {
       method: 'POST',
       mode: 'cors',
+      Accept: 'application/json',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(surveyPayload),
     }
   )
+  debugger;
   if (response.status !== 200) {
     throw new Error('Error submitting SurveyMonkey')
   }

@@ -35,7 +35,7 @@ export default class MockDataProvider extends React.Component {
             mode: 'cors',
           }
         )
-        const data = await response.json()
+        const data = await response.json();
         this.setState({
           loading: false,
           requiredTransferWorkspaces: data.requiredTransferWorkspaces,

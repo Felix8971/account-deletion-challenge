@@ -1,14 +1,14 @@
-import _ from 'lodash'
-import React from 'react'
+import _ from 'lodash';
+import React from 'react';
 
-import ConfirmEmailModal from './ConfirmEmailModal.react'
+import ConfirmEmailModal from './ConfirmEmailModal';
 import TransferOwnershipModal, {
   WorkspaceGroupRows,
-} from './TransferOwnershipModal.react'
-import FeedbackSurveyModal from './FeedbackSurveyModal.react'
-import { submitToSurveyMonkeyDeleteAccount } from './SurveyService'
-import * as LoadState from './LoadState'
-import AssignOwnership from './AssignOwnership.react'
+} from './TransferOwnershipModal';
+import FeedbackSurveyModal from './FeedbackSurveyModal';
+import { submitToSurveyMonkeyDeleteAccount } from '../SurveyService';
+import * as LoadState from '../LoadState';
+import AssignOwnership from './AssignOwnership';
 
 export default class TerminateModalFlow extends React.Component {
   static propTypes = {
@@ -35,12 +35,12 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchRelatedWorkspaces()
+    this.props.fetchRelatedWorkspaces();
   }
 
   componentWillReceiveProps(nextProps) {
     if (LoadState.isLoaded(nextProps.terminateAccountStatus)) {
-      this.props.redirectToHomepage()
+      this.props.redirectToHomepage();
     }
   }
 
