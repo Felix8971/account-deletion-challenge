@@ -20,13 +20,9 @@ export default class MockDataProvider extends React.Component {
         name: 'Ross Lynch',
         email: 'ross@example.com',
       },
-
       loading: true,
-
       requiredTransferWorkspaces: [],
-
       deleteWorkspaces: [],
-
       transferableMembers: [],
 
       fetchRelatedWorkspaces: async () => {
@@ -39,10 +35,7 @@ export default class MockDataProvider extends React.Component {
           }
         )
         const data = await response.json();
-<<<<<<< HEAD
         debugger;
-=======
->>>>>>> f8b426c51c13e529b0c18181968373762b594e86
         this.setState({
           loading: false,
           requiredTransferWorkspaces: data.requiredTransferWorkspaces,
