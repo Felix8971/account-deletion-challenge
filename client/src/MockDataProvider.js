@@ -35,7 +35,6 @@ export default class MockDataProvider extends React.Component {
           }
         )
         const data = await response.json();
-        debugger;
         this.setState({
           loading: false,
           requiredTransferWorkspaces: data.requiredTransferWorkspaces,

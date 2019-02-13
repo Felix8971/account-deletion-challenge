@@ -61,7 +61,6 @@ export default class TerminateModalFlow extends React.Component {
       },
       []
     );
-    debugger;
     return updateData
   }
 
@@ -140,7 +139,6 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   onDeleteAccount = async () => {
-    debugger;
     if (this.props.user.email === this.state.email) {
       const payload = {
         transferTargets: _.map(this.getTransferData(), assign => ({

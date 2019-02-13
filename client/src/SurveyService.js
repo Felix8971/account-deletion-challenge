@@ -91,8 +91,7 @@ export const submitToSurveyMonkeyDeleteAccount = async ({
       },
       body: JSON.stringify(surveyPayload),
     }
-  )
-  debugger;
+  );
   if (response.status !== 200) {
     throw new Error('Error submitting SurveyMonkey')
   }

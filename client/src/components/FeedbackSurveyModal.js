@@ -16,22 +16,17 @@ class FeedbackSurveyModal extends React.PureComponent {
 
   constructor(props) {
     super(props)
-    this.state = this.setInitialState()
-  }
-
-  state = {
-    isFocusCommentBox: false,
-  }
-
-  setInitialState = () => {
-    return chain(feedbackSurveyItems)
-      .map(item => [item.stack, false])
-      .fromPairs()
-      .value()
+    this.state = { 
+      surveyItems: chain(feedbackSurveyItems)
+        .map(item => [item.stack, false])
+        .fromPairs()
+        .value(),
+      isFocusCommentBox: false,
+    }
   }
 
   hasAllUnchecked = () => {
-    const FeedbackSurveyItems = this.state
+    const FeedbackSurveyItems = this.state.surveyItems;
     return (
       every(FeedbackSurveyItems, val => val === false) &&
       !this.state.isFocusCommentBox
@@ -39,7 +34,11 @@ class FeedbackSurveyModal extends React.PureComponent {
   }
 
   onToggleFeedback(stack) {
-    this.setState({ [stack]: !this.state[stack] })
+    const { surveyItems } = this.state;
+    const updatedOption = {};
+    updatedOption[stack] = !surveyItems[stack];
+    const newSurveyItems = Object.assign(surveyItems, updatedOption);
+    this.setState({ surveyItems: {...newSurveyItems} });
   }
 
   onFocusCommentBox = () => {
@@ -48,7 +47,7 @@ class FeedbackSurveyModal extends React.PureComponent {
 
   renderInputForm({ stack, canComment, placeHolder }) {
     const prefill = placeHolder && canComment ? placeHolder : ''
-    return !this.state[stack] ? null : (
+    return !this.state.surveyItems[stack] ? null : (
       <div style={!canComment ? { display: 'none' } : null}>
         <input type="text" name={stack} ref={stack} placeholder={prefill} />
       </div>
@@ -98,7 +97,7 @@ class FeedbackSurveyModal extends React.PureComponent {
               <label>
                 <input
                   type="checkbox"
-                  checked={this.state[item.stack]}
+                  checked={this.state.surveyItems[item.stack]}
                   onClick={() => this.onToggleFeedback(item.stack)}
                 />
                 {item.title}
