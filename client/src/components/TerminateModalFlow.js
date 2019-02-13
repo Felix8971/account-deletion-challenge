@@ -23,14 +23,19 @@ export default class TerminateModalFlow extends React.Component {
     terminateAccountStatus: React.PropTypes.object,
     resetTerminateAccountStatus: React.PropTypes.func,
     redirectToHomepage: React.PropTypes.func,
+    toto: React.PropTypes.func,
   }
 
-  state = {
-    activeModal: 'transfer',
-    transferData: [],
-    feedbacks: [],
-    comment: '',
-    email: '',
+  constructor(props) {
+    super(props)
+    this.state = {
+      activeModal: 'transfer',
+      transferData: [],
+      feedbacks: [],
+      comment: '',
+      email: '',
+    }
+    console.log('props=',props);
   }
 
   componentDidMount() {

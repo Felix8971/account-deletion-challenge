@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
-import MockDataProvider from './MockDataProvider';
-import TerminateModalFlow from './components/TerminateModalFlow';
+import './style.css';
+import App from './App';
 
 ReactDOM.render(
-  <MockDataProvider>
-    {props => <TerminateModalFlow {...props} />}
-  </MockDataProvider>,
+  <App/>,
   document.getElementById('root')
 )
 
