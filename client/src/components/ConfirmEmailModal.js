@@ -14,20 +14,43 @@ class ConfirmEmailModal extends React.PureComponent {
     terminateAccountStatus: PropTypes.object,
   }
 
-  state = { markedConsequences: false }
+  constructor(props) {
+    super(props)
+    this.state = { 
+      markedConsequences: false, isEmailValid: true,
+    }
+  }
 
   componentWillUnmount() {
-    this.props.resetTerminateAccountStatus()
+    this.props.resetTerminateAccountStatus();
   }
 
   getStateButton = () => {
-    if (isLoading(this.props.terminateAccountStatus)) return true
-    if (this.state.markedConsequences && this.props.email) return false
-    return true
+    /*console.log('------------------------------------');
+    console.log('this.props.terminateAccountStatus=', this.props.terminateAccountStatus);
+    console.log('isLoading(this.props.terminateAccountStatus)=', isLoading(this.props.terminateAccountStatus));
+    console.log('this.state.markedConsequences=', this.state.markedConsequences);
+    console.log('this.props.email=', this.props.email);
+    console.log('this.state.isEmailValid=',this.state.isEmailValid);*/
+    
+    if ( isLoading(this.props.terminateAccountStatus) ) { 
+      return true;
+    } else if (this.state.markedConsequences && this.props.email && this.state.isEmailValid) { 
+      return false;
+    }
+    return true;
   }
 
   onToggleMarkedConsequences = () => {
     this.setState({ markedConsequences: !this.state.markedConsequences })
+  }
+
+  handleBlurEmail = (e) => {
+    const email = e.target.value;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;// eslint-disable-line
+    this.setState({ 
+      isEmailValid: re.test(String(email).toLowerCase()),
+    });
   }
 
   renderFormInputPasssword = () => {
@@ -38,14 +61,19 @@ class ConfirmEmailModal extends React.PureComponent {
           type="text"
           placeholder="ross@example.com"
           style={{ width: '350px' }}
+          value={this.props.email}
           onChange={this.props.onTypeEmail}
+          onBlur={this.handleBlurEmail}
         />
         <span style={{ color: 'red' }}>{errorMessage}</span>
+        { !this.state.isEmailValid && <span style={{ color: 'red' }}>Please enter a valid email</span> }
       </div>
     )
   }
 
   render() {
+    const { markedConsequences } = this.state;
+    const { onClickToDelete, onBackButton } = this.props;
     return (
       <div>
         <h1>Delete account</h1>
@@ -55,16 +83,16 @@ class ConfirmEmailModal extends React.PureComponent {
           <label>
             <input
               type="checkbox"
-              checked={this.state.markedConsequences}
+              checked={markedConsequences}
               onChange={this.onToggleMarkedConsequences}
             />
             I understand the consequences.
           </label>
         </div>
         <div>
-          <button onClick={this.props.onBackButton}>Back</button>
+          <button onClick={onBackButton}>Back</button>
           <button
-            onClick={this.props.onClickToDelete}
+            onClick={onClickToDelete}
             disabled={this.getStateButton()}
           >
             Delete my account

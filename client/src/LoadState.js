@@ -21,10 +21,15 @@ export const isError = state => state.status === STATUS_ERROR;
 export const shouldLoad = state =>
   state.status === STATUS_PENDING || state.status === STATUS_OUTDATED;// not used
 
-export const isLoading = state =>
-  state.status === STATUS_PENDING ||
-  state.status === STATUS_FETCHING ||
-  state.status === STATUS_REFRESHING;
+export const isLoading = (state) => {
+  if ( state && state.status) {
+    return ( state.status === STATUS_PENDING ||
+     state.status === STATUS_FETCHING ||
+     state.status === STATUS_REFRESHING);
+  } else {
+    return false;
+  }
+}
 
 export const isLoadingFirstTime = state => state.status === STATUS_FETCHING;// not used
 

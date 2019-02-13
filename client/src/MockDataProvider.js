@@ -116,7 +116,7 @@ export default class MockDataProvider extends React.Component {
         } else {
           this.setState({
             terminateAccountStatus: LoadState.handleLoadFailedWithError(
-              'Error deleting account'
+              'Error deleting account, please try again'
             )(this.state.terminateAccountStatus),
           })
         }
@@ -133,13 +133,14 @@ export default class MockDataProvider extends React.Component {
       terminateAccountStatus: {},
       resetTerminateAccountStatus: () => {
         this.setState({
-          terminateAccountStatus: LoadState.pending,
+          terminateAccountStatus: { status: null }, //LoadState.pending,
         })
       },
 
       redirectToHomepage: () => {
+        alert("The account has been deleted !");
         console.log('redirectToHomepage !');
-        //window.location = 'http://www.example.com/'
+        window.location = 'http://www.example.com/'
       },
     }
   }

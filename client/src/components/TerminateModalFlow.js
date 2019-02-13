@@ -155,7 +155,7 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   onTypeEmail = e => {
-    this.setState({ email: e.target.value })
+    this.setState({ email: e.target.value });
   }
 
   renderTransferModal() {
@@ -214,6 +214,7 @@ export default class TerminateModalFlow extends React.Component {
             onClickToDelete={this.onDeleteAccount}
             onBackButton={this.onGoToPreviousStep}
             email={this.state.email}
+            isEmailValid={this.state.isEmailValid}
             onTypeEmail={this.onTypeEmail}
             terminateAccountStatus={this.props.terminateAccountStatus}
             resetTerminateAccountStatus={this.props.resetTerminateAccountStatus}
