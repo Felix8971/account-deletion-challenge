@@ -1,8 +1,8 @@
-import _ from 'lodash'
-import PropTypes from 'prop-types'
-import React from 'react'
+import _ from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import * as LoadState from '../LoadState'
+import { isLoading, isError } from '../LoadState';
 
 export default class AssignOwnership extends React.Component {
   static propTypes = {
@@ -15,10 +15,10 @@ export default class AssignOwnership extends React.Component {
   getAddedMember() {
     const { workspace, transferData } = this.props
     return _.chain(transferData)
-      .reject(LoadState.isError || LoadState.isLoading)
+      .reject( isError || isLoading)
       .find(assign => assign.workspaceId === workspace.spaceId)
       .get('toUser._id', '')
-      .value()
+      .value();
   }
 
   onAssignToUser = e => {

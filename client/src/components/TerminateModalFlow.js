@@ -2,12 +2,11 @@ import _ from 'lodash';
 import React from 'react';
 
 import ConfirmEmailModal from './ConfirmEmailModal';
-import TransferOwnershipModal, {
-  WorkspaceGroupRows,
-} from './TransferOwnershipModal';
+import TransferOwnershipModal from './TransferOwnershipModal';
+import WorkspaceGroupRows from './WorkspaceGroupRows';
 import FeedbackSurveyModal from './FeedbackSurveyModal';
 import { submitToSurveyMonkeyDeleteAccount } from '../SurveyService';
-import * as LoadState from '../LoadState';
+import { isLoaded, pending } from '../LoadState';
 import AssignOwnership from './AssignOwnership';
 
 export default class TerminateModalFlow extends React.Component {
@@ -39,7 +38,7 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (LoadState.isLoaded(nextProps.terminateAccountStatus)) {
+    if ( isLoaded(nextProps.terminateAccountStatus)) {
       this.props.redirectToHomepage();
     }
   }
@@ -61,7 +60,8 @@ export default class TerminateModalFlow extends React.Component {
         return result
       },
       []
-    )
+    );
+    debugger;
     return updateData
   }
 
@@ -76,7 +76,7 @@ export default class TerminateModalFlow extends React.Component {
         {
           workspaceId: workspace.spaceId,
           toUser: user,
-          ...LoadState.pending,
+          ...pending,
         },
       ],
     })

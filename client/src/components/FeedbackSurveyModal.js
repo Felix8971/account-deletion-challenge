@@ -1,6 +1,6 @@
-import _ from 'lodash'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { map, chain, every } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import { feedbackSurveyItems } from '../FeedbackSurveyItems'
 
@@ -24,7 +24,7 @@ class FeedbackSurveyModal extends React.PureComponent {
   }
 
   setInitialState = () => {
-    return _.chain(feedbackSurveyItems)
+    return chain(feedbackSurveyItems)
       .map(item => [item.stack, false])
       .fromPairs()
       .value()
@@ -33,7 +33,7 @@ class FeedbackSurveyModal extends React.PureComponent {
   hasAllUnchecked = () => {
     const FeedbackSurveyItems = this.state
     return (
-      _.every(FeedbackSurveyItems, val => val === false) &&
+      every(FeedbackSurveyItems, val => val === false) &&
       !this.state.isFocusCommentBox
     )
   }
@@ -93,7 +93,7 @@ class FeedbackSurveyModal extends React.PureComponent {
       <div>
         <h1>{this.props.title}</h1>
         <div>
-          {_.map(feedbackSurveyItems, (item, key) => (
+          {map(feedbackSurveyItems, (item, key) => (
             <div key={key}>
               <label>
                 <input
