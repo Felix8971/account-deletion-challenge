@@ -2,7 +2,7 @@ import { map, chain, every } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { feedbackSurveyItems } from '../FeedbackSurveyItems'
+import { feedbackSurveyItems } from '../constants'
 
 class FeedbackSurveyModal extends React.PureComponent {
   static propTypes = {
