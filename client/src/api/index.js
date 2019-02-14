@@ -66,6 +66,10 @@ export const transferOwnership = (ctx) => (user, workspace) => {
 
 export const terminateAccount =  ctx => payload => {
   // Note that there is 30% chance of getting error from the server
+  ctx.setState({
+    terminateAccountStatus: LoadState.pending,
+  });
+
   fetch(
     `${URL}/terminateAccount`,
     {

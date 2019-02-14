@@ -1,6 +1,6 @@
 
 
-- use destructuring as much as possible
+- use destructuring notation as much as possible
 - use axios ? => supports Internet Explorer verison 8 and newer, allowing web application to be compatible with a wider range of browsers.
 - Separate api call from components
 - Create public folder for static files

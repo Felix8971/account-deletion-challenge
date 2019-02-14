@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { isLoading } from '../LoadState'
+import { isLoading, completed, isLoaded } from '../LoadState'
 
 class ConfirmEmailModal extends React.PureComponent {
   static propTypes = {
@@ -22,6 +22,7 @@ class ConfirmEmailModal extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    console.log('resetTerminateAccountStatus');
     this.props.resetTerminateAccountStatus();
   }
 
@@ -73,33 +74,48 @@ class ConfirmEmailModal extends React.PureComponent {
 
   render() {
     const { markedConsequences } = this.state;
-    const { onClickToDelete, onBackButton } = this.props;
-    return (
-      <div>
-        <h1>Delete account</h1>
-        <p>This action cannot be undone.</p>
-        <div>Please enter your email: {this.renderFormInputPasssword()}</div>
-        <div style={{ marginTop: '1rem' }}>
-          <label>
-            <input
-              type="checkbox"
-              checked={markedConsequences}
-              onChange={this.onToggleMarkedConsequences}
-            />
-            I understand the consequences.
-          </label>
+    const { onClickToDelete, onBackButton, terminateAccountStatus } = this.props;
+    console.log('terminateAccountStatus=',terminateAccountStatus);
+    if ( isLoading(terminateAccountStatus) ){
+      return (
+        <img className="spinner" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+      )
+    } else if ( isLoaded(terminateAccountStatus) ) {
+      return (
+        <div className="deleted">
+          <p>The account has been deleted !</p>
+          <p>You will be redirected in 2s...</p>
         </div>
-        <div>
-          <button onClick={onBackButton}>Back</button>
-          <button
-            onClick={onClickToDelete}
-            disabled={this.getStateButton()}
-          >
-            Delete my account
-          </button>
+      )
+    } else {
+      return (
+        <div >
+          <h1>Delete account</h1>
+          <p>This action cannot be undone.</p>
+          <div>Please enter your email ross@example.com: {this.renderFormInputPasssword()}</div>
+          
+          <div style={{ marginTop: '1rem' }}>
+            <label>
+              <input
+                type="checkbox"
+                checked={markedConsequences}
+                onChange={this.onToggleMarkedConsequences}
+              />
+              I understand the consequences.
+            </label>
+          </div>
+          <div>
+            <button onClick={onBackButton}>Back</button>
+            <button
+              onClick={onClickToDelete}
+              disabled={this.getStateButton()}
+            >
+              Delete my account
+            </button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

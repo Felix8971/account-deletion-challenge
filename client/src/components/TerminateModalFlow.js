@@ -35,7 +35,6 @@ export default class TerminateModalFlow extends React.Component {
       comment: '',
       email: '',
     }
-    console.log('props=',props);
   }
 
   componentDidMount() {
@@ -152,7 +151,7 @@ export default class TerminateModalFlow extends React.Component {
         })),
         reason: this.state.feedbacks,
       }
-      this.props.terminateAccount(payload)
+      this.props.terminateAccount(payload);
     } else {
       const error = 'Invalid email'
       this.props.terminateAccountError(error)
