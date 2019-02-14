@@ -164,32 +164,34 @@ export default class TerminateModalFlow extends React.Component {
   }
 
   renderTransferModal() {
-    const transferData = this.getTransferData()
-    const totalAssigned = transferData.length
+    const transferData = this.getTransferData();
+    const totalAssigned = transferData.length;
     const totalWorkspaceRequiredTransfer = this.props.requiredTransferWorkspaces
-      .length
-    const totalWorkspaceDelete = this.props.deleteWorkspaces.length
+      .length;
+    const totalWorkspaceDelete = this.props.deleteWorkspaces.length;
     const disabledNextPage =
-      totalAssigned < totalWorkspaceRequiredTransfer || this.props.loading
+      totalAssigned < totalWorkspaceRequiredTransfer || this.props.loading;
+    const { loading, requiredTransferWorkspaces, user, deleteWorkspaces }  = this.props;
+
     return (
       <TransferOwnershipModal
         nextPage={this.onSetNextPage}
-        loading={this.props.loading}
+        loading={loading}
         disabledNextPage={disabledNextPage}
       >
         <WorkspaceGroupRows
-          workspaces={this.props.requiredTransferWorkspaces}
+          workspaces={requiredTransferWorkspaces}
           groupTitle="The following workspaces require ownership transfer:"
           shouldDisplay={totalWorkspaceRequiredTransfer > 0}
         >
           <AssignOwnership
-            user={this.props.user}
+            user={user}
             transferData={this.getTransferData()}
             onAssignToUser={this.onAssignToUser}
           />
         </WorkspaceGroupRows>
         <WorkspaceGroupRows
-          workspaces={this.props.deleteWorkspaces}
+          workspaces={deleteWorkspaces}
           groupTitle="The following workspaces will be deleted:"
           shouldDisplay={totalWorkspaceDelete > 0}
         />

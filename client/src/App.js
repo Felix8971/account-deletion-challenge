@@ -48,7 +48,7 @@ export default class App extends React.Component {
   redirectToHomepage = () => {
     alert("The account has been deleted !");
     console.log('redirectToHomepage !');
-    window.location = 'http://www.example.com/';
+    //window.location = 'http://www.example.com/';
   };
 
   render() {

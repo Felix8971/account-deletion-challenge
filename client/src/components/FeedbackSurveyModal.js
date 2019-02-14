@@ -88,16 +88,18 @@ class FeedbackSurveyModal extends React.PureComponent {
   }
 
   render() {
+    const { title } = this.props;
+    const { surveyItems } = this.state;
     return (
       <div>
-        <h1>{this.props.title}</h1>
+        <h1>{title}</h1>
         <div>
           {map(feedbackSurveyItems, (item, key) => (
             <div key={key}>
               <label>
                 <input
                   type="checkbox"
-                  checked={this.state.surveyItems[item.stack]}
+                  checked={surveyItems[item.stack]}
                   onClick={() => this.onToggleFeedback(item.stack)}
                 />
                 {item.title}
