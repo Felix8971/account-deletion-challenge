@@ -42,7 +42,6 @@ export default class AssignOwnership extends React.Component {
   }
 }
 
-
 AssignOwnership.propTypes = {
   user: PropTypes.object,
   workspace: PropTypes.object,

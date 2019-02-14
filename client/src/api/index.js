@@ -12,18 +12,18 @@ const headerCommon = {
 // Using the arrow function with currying seems to be the cleanest & most concise
 // (not most efficient though) way to define event handlers that accepts user defined parameters.
 export const fetchRelatedWorkspaces = (ctx) => () => {
-  fetch(`${URL}/fetchWorkspaces?userId=${ctx.state.user._id}`, {mode: 'cors',})
-  .then( (response) => {
-    response.json().then( (data) => {
-      console.log('data=', data);
-      ctx.setState({
-        loading: false,
-        requiredTransferWorkspaces: data.requiredTransferWorkspaces,
-        deleteWorkspaces: data.deleteWorkspaces,
+  fetch(`${URL}/fetchWorkspaces?userId=${ctx.state.user._id}`, {mode: 'cors'})
+    .then( (response) => {
+      response.json().then( (data) => {
+        console.log('data=', data);
+        ctx.setState({
+          loading: false,
+          requiredTransferWorkspaces: data.requiredTransferWorkspaces,
+          deleteWorkspaces: data.deleteWorkspaces,
+        });
       });
-    });
-  })
-  .catch(error => console.error('Error:', error));
+    })
+    .catch(error => console.error('Error:', error));
 };
 
 export const transferOwnership = (ctx) => (user, workspace) => {
@@ -85,5 +85,5 @@ export const terminateAccount =  ctx => payload => {
       });
     }
   })
-  .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error:', error));
 };

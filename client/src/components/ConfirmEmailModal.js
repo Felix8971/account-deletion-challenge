@@ -1,8 +1,8 @@
-import _ from 'lodash'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { get } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { isLoading, completed, isLoaded } from '../LoadState'
+import { isLoading, isLoaded } from '../LoadState'
 
 class ConfirmEmailModal extends React.PureComponent {
 
@@ -19,13 +19,6 @@ class ConfirmEmailModal extends React.PureComponent {
   }
 
   getStateButton = () => {
-    /*console.log('------------------------------------');
-    console.log('this.props.terminateAccountStatus=', this.props.terminateAccountStatus);
-    console.log('isLoading(this.props.terminateAccountStatus)=', isLoading(this.props.terminateAccountStatus));
-    console.log('this.state.markedConsequences=', this.state.markedConsequences);
-    console.log('this.props.email=', this.props.email);
-    console.log('this.state.isEmailValid=',this.state.isEmailValid);*/
-    
     if ( isLoading(this.props.terminateAccountStatus) ) { 
       return true;
     } else if (this.state.markedConsequences && this.props.email && this.state.isEmailValid) { 
@@ -47,7 +40,7 @@ class ConfirmEmailModal extends React.PureComponent {
   }
 
   renderFormInputPasssword = () => {
-    const errorMessage = _.get(this.props.terminateAccountStatus, 'error', null)
+    const errorMessage = get(this.props.terminateAccountStatus, 'error', null)
     return (
       <div>
         <input
@@ -68,7 +61,7 @@ class ConfirmEmailModal extends React.PureComponent {
     const { markedConsequences } = this.state;
     const { onClickToDelete, onBackButton, terminateAccountStatus } = this.props;
     console.log('terminateAccountStatus=',terminateAccountStatus);
-    if ( isLoading(terminateAccountStatus) ){
+    if ( isLoading(terminateAccountStatus) ) {
       return (
         <img className="spinner" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
       )

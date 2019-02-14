@@ -22,19 +22,23 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.js$/,
         exclude: [/node_modules/],
         use: {
           loader: 'babel-loader',
           query:
           {
-            presets:['react']
+            presets:['react'],
           },
         },
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
       },
       {
         test: /\.js$/,
@@ -47,22 +51,22 @@ const config = {
         test: /\.svg$/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           },
           {
             loader: 'react-svg-loader',
             options: {
-              jsx: true // true outputs JSX tags
-            }
-          }
-        ]
+              jsx: true, // true outputs JSX tags
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/i,
         use: [
           'style-loader', // creates style nodes from JS strings
           'css-loader', // translates CSS into CommonJS
-          'sass-loader' // compiles Sass to CSS
+          'sass-loader', // compiles Sass to CSS
         ],
       },
     ],

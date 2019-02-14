@@ -10,7 +10,7 @@ export const pending = { status: STATUS_PENDING };
 
 export const completed = { status: STATUS_COMPLETED };
 
-const refreshing = { status: STATUS_REFRESHING };
+// const refreshing = { status: STATUS_REFRESHING };
 
 export const error = STATUS_ERROR;
 
@@ -31,22 +31,22 @@ export const isLoading = (state) => {
   }
 }
 
-export const isLoadingFirstTime = state => state.status === STATUS_FETCHING;// not used
+// export const isLoadingFirstTime = state => state.status === STATUS_FETCHING;// not used
 
-export const isRefreshing = state => state.status === STATUS_REFRESHING;// not used
+// export const isRefreshing = state => state.status === STATUS_REFRESHING;// not used
 
 export const isLoaded = state =>
   state.status === STATUS_COMPLETED || state.status === STATUS_REFRESHING;
 
 export const handleLoaded = state => completed;
 
-export const handleOutdated = state => outdated;// not used
+// export const handleOutdated = state => outdated;// not used
 
-export const handleLoadRequested = state => {
+/* export const handleLoadRequested = state => {
   const fetching = { status: STATUS_FETCHING };
   const outdated = { status: STATUS_OUTDATED };
   return state.status === STATUS_OUTDATED ? refreshing : fetching
-};
+};*/
 
 export const handleLoadFailedWithError = error => {
   const nextState = initWithError(error)

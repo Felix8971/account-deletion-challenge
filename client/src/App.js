@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import * as LoadState from './LoadState'
-import { URL } from './constants.js';
 import TerminateModalFlow from './components/TerminateModalFlow';
 import {
   fetchRelatedWorkspaces,
@@ -48,9 +46,9 @@ export default class App extends React.Component {
   redirectToHomepage = () => {
     ///alert("The account has been deleted !");
     console.log('redirectToHomepage !');
-    setTimeout(()=>{
+    setTimeout(() => {
       window.location = 'http://www.example.com/';
-    },2000);
+    }, 2000);
   };
 
   render() {
