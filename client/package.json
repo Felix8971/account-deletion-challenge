@@ -1,26 +1,57 @@
 {
   "name": "account-deletion-challenge",
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "setupFiles": ["./src/setupTests.js"]
+  },
   "license": "MIT",
   "scripts": {
-    "serve": "cross-env NODE_ENV=development parcel public/index.html --out-dir out"
+    "start": "cross-env NODE_ENV=development parcel public/index.html --out-dir out",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "client": "webpack-dev-server"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "@types/autoprefixer": "6.7.3",
     "@types/lodash": "4.14.116",
     "@types/parcel-bundler": "1.10.0",
     "@types/react": "16.4.16",
     "@types/react-dom": "16.0.9",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "cross-env": "5.1.4"
+    "cross-env": "5.1.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.5",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^23.1.0",
+    "json-server": "^0.12.0",
+    "node-sass": "^4.9.0",
+    "react-svg-loader": "^2.1.0",
+    "react-test-renderer": "^16.4.1",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
     "autoprefixer": "8.2.0",
     "babel-preset-react-app": "3.1.1",
     "lodash": "4.17.5",
     "parcel-bundler": "~1.7.0",
-    "prop-types": "^15.7.1",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "prop-types": "^15.7.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "postcss": {
     "modules": false,

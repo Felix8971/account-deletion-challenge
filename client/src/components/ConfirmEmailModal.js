@@ -5,14 +5,6 @@ import React from 'react'
 import { isLoading, completed, isLoaded } from '../LoadState'
 
 class ConfirmEmailModal extends React.PureComponent {
-  static propTypes = {
-    onClickToDelete: PropTypes.func,
-    onBackButton: PropTypes.func,
-    email: PropTypes.string,
-    onTypeEmail: PropTypes.func,
-    resetTerminateAccountStatus: PropTypes.func,
-    terminateAccountStatus: PropTypes.object,
-  }
 
   constructor(props) {
     super(props)
@@ -116,6 +108,15 @@ class ConfirmEmailModal extends React.PureComponent {
       )
     }
   }
+}
+
+ConfirmEmailModal.propTypes = {
+  onClickToDelete: PropTypes.func,
+  onBackButton: PropTypes.func,
+  email: PropTypes.string,
+  onTypeEmail: PropTypes.func,
+  resetTerminateAccountStatus: PropTypes.func,
+  terminateAccountStatus: PropTypes.object,
 }
 
 export default ConfirmEmailModal

@@ -1,6 +1,6 @@
-const functions = require('firebase-functions')
-const cors = require('cors')({ origin: true })
-const sleep = require('./sleep')
+const functions = require('firebase-functions');
+const cors = require('cors')({ origin: true });
+const sleep = require('./sleep');
 
 module.exports = functions.https.onRequest((request, response) =>
   cors(request, response, async () => {

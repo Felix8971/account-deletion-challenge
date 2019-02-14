@@ -5,12 +5,6 @@ import React from 'react';
 import { isLoading, isError } from '../LoadState';
 
 export default class AssignOwnership extends React.Component {
-  static propTypes = {
-    user: PropTypes.object,
-    workspace: PropTypes.object,
-    transferData: PropTypes.array,
-    onAssignToUser: PropTypes.func,
-  }
 
   getAddedMember() {
     const { workspace, transferData } = this.props
@@ -46,4 +40,12 @@ export default class AssignOwnership extends React.Component {
       </div>
     )
   }
+}
+
+
+AssignOwnership.propTypes = {
+  user: PropTypes.object,
+  workspace: PropTypes.object,
+  transferData: PropTypes.array,
+  onAssignToUser: PropTypes.func,
 }

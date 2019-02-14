@@ -5,14 +5,6 @@ import React from 'react';
 import { feedbackSurveyItems } from '../constants'
 
 class FeedbackSurveyModal extends React.PureComponent {
-  static propTypes = {
-    onSubmit: PropTypes.func,
-    onBackButton: PropTypes.func,
-    title: PropTypes.node,
-    showCommentForm: PropTypes.bool,
-    comment: PropTypes.string,
-    onChangeComment: PropTypes.func,
-  }
 
   constructor(props) {
     super(props)
@@ -101,6 +93,7 @@ class FeedbackSurveyModal extends React.PureComponent {
                   type="checkbox"
                   checked={surveyItems[item.stack]}
                   onClick={() => this.onToggleFeedback(item.stack)}
+                  onChange={()=>{}}
                 />
                 {item.title}
               </label>
@@ -115,4 +108,15 @@ class FeedbackSurveyModal extends React.PureComponent {
   }
 }
 
-export default FeedbackSurveyModal
+
+FeedbackSurveyModal.propTypes = {
+  title: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onBackButton: PropTypes.func,
+  showCommentForm: PropTypes.bool,
+  comment: PropTypes.string,
+  onChangeComment: PropTypes.func,
+}
+
+
+export default FeedbackSurveyModal;

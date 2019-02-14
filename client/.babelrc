@@ -1,6 +1,7 @@
 {
   "presets": [
-    "env"
+    "env",
+    "react"
   ],
   "plugins": [
     [
@@ -12,6 +13,7 @@
     ],
     "transform-object-rest-spread",
     "transform-class-properties",
+    "syntax-dynamic-import",
     [
       "transform-react-jsx",
       {

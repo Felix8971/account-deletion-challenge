@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import ConfirmEmailModal from './ConfirmEmailModal';
 import TransferOwnershipModal from './TransferOwnershipModal';
 import WorkspaceGroupRows from './WorkspaceGroupRows';
@@ -10,22 +10,7 @@ import { isLoaded, pending } from '../LoadState';
 import AssignOwnership from './AssignOwnership';
 
 export default class TerminateModalFlow extends React.Component {
-  static propTypes = {
-    user: React.PropTypes.object.isRequired,
-    loading: React.PropTypes.bool,
-    requiredTransferWorkspaces: React.PropTypes.array,
-    deleteWorkspaces: React.PropTypes.array,
-    fetchRelatedWorkspaces: React.PropTypes.func,
-    transferOwnershipStatus: React.PropTypes.object,
-    transferOwnership: React.PropTypes.func,
-    terminateAccount: React.PropTypes.func,
-    terminateAccountError: React.PropTypes.func,
-    terminateAccountStatus: React.PropTypes.object,
-    resetTerminateAccountStatus: React.PropTypes.func,
-    redirectToHomepage: React.PropTypes.func,
-    toto: React.PropTypes.func,
-  }
-
+  
   constructor(props) {
     super(props)
     this.state = {
@@ -228,4 +213,20 @@ export default class TerminateModalFlow extends React.Component {
         )
     }
   }
+}
+
+
+TerminateModalFlow.propTypes = {
+  user: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
+  requiredTransferWorkspaces: PropTypes.array,
+  deleteWorkspaces: PropTypes.array,
+  fetchRelatedWorkspaces: PropTypes.func,
+  transferOwnershipStatus: PropTypes.object,
+  transferOwnership: PropTypes.func,
+  terminateAccount: PropTypes.func,
+  terminateAccountError: PropTypes.func,
+  terminateAccountStatus: PropTypes.object,
+  resetTerminateAccountStatus: PropTypes.func,
+  redirectToHomepage: PropTypes.func,
 }

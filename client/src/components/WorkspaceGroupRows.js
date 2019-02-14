@@ -20,6 +20,7 @@ export const WorkspaceGroupRows = props =>
       </div>
     </div>
   )
+
 WorkspaceGroupRows.propTypes = {
   groupTitle: PropTypes.string,
   workspaces: PropTypes.array.isRequired,
