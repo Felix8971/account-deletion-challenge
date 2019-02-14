@@ -1,6 +1,14 @@
 import { URL } from '../constants.js';
 import * as LoadState from '../LoadState';
 
+const headerCommon = { 
+  method: 'POST',
+  mode: 'cors',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+} 
+
 // Using the arrow function with currying seems to be the cleanest & most concise
 // (not most efficient though) way to define event handlers that accepts user defined parameters.
 export const fetchRelatedWorkspaces = (ctx) => () => {
@@ -28,38 +36,25 @@ export const transferOwnership = (ctx) => (user, workspace) => {
       },
     },
     async () => {
-      const response = await fetch(
-        `${URL}/checkOwnership`,
+      const response = await fetch(`${URL}/checkOwnership`,
         {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          ...headerCommon,
           body: JSON.stringify({
             workspaceId: workspace.spaceId,
             fromUserId: ctx.state.user._id,
             toUserId: user._id,
           }),
         }
-      )
-      if (response.status === 200) {
-        ctx.setState({
-          transferOwnershipStatus: {
-            workspaceId: workspace.spaceId,
-            toUserId: user._id,
-            ...LoadState.completed,
-          },
-        })
-      } else {
-        ctx.setState({
-          transferOwnershipStatus: {
-            workspaceId: workspace.spaceId,
-            toUserId: user._id,
-            ...LoadState.error,
-          },
-        })
-      }
+      );
+
+      const status = response.status === 200 ? LoadState.completed : LoadState.error;
+      ctx.setState({
+        transferOwnershipStatus: {
+          workspaceId: workspace.spaceId,
+          toUserId: user._id,
+          ...status,
+        },
+      });
     }
   )
 }; 
@@ -70,14 +65,9 @@ export const terminateAccount =  ctx => payload => {
     terminateAccountStatus: LoadState.pending,
   });
 
-  fetch(
-    `${URL}/terminateAccount`,
+  fetch(`${URL}/terminateAccount`,
     {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      ...headerCommon,
       body: JSON.stringify(payload),
     }
   ).then( (response) => {
@@ -86,13 +76,13 @@ export const terminateAccount =  ctx => payload => {
         terminateAccountStatus: LoadState.handleLoaded(
           ctx.state.terminateAccountStatus
         ),
-      })
+      });
     } else {
       ctx.setState({
         terminateAccountStatus: LoadState.handleLoadFailedWithError(
           'Error deleting account, please try again'
         )(ctx.state.terminateAccountStatus),
-      })
+      });
     }
   })
   .catch(error => console.error('Error:', error));

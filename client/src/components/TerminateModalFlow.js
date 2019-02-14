@@ -33,7 +33,7 @@ export default class TerminateModalFlow extends React.Component {
       transferData: [],
       feedbacks: [],
       comment: '',
-      email: '',
+      email: this.props.user.email,
     }
   }
 

@@ -66,8 +66,8 @@ class ConfirmEmailModal extends React.PureComponent {
           onChange={this.props.onTypeEmail}
           onBlur={this.handleBlurEmail}
         />
-        <span style={{ color: 'red' }}>{errorMessage}</span>
-        { !this.state.isEmailValid && <span style={{ color: 'red' }}>Please enter a valid email</span> }
+        <div style={{ color: 'red' }}>{errorMessage}</div>
+        { !this.state.isEmailValid && <div style={{ color: 'red', marginTop:'10px' }}>Please enter a valid email</div> }
       </div>
     )
   }
@@ -92,8 +92,7 @@ class ConfirmEmailModal extends React.PureComponent {
         <div >
           <h1>Delete account</h1>
           <p>This action cannot be undone.</p>
-          <div>Please enter your email ross@example.com: {this.renderFormInputPasssword()}</div>
-          
+          <div>Please enter your email: {this.renderFormInputPasssword()}</div>
           <div style={{ marginTop: '1rem' }}>
             <label>
               <input
