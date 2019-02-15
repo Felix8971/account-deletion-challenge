@@ -34,11 +34,11 @@ Code refactoring & reorganization:
 8) Fix lint errors
   - use lint has a lot of benefits such as readability, improve code quality, finding syntax errors before execution, etc
 
-9) Use styled-component for css
+9) Create a reusable Button component
+
+10) Use styled-component for css
   - because inserting style inside the tag will not be maintainable in the long term.
-
-10) Create a reusable Button component
-
+  (I used it in Button component but must be use everywhere once design is defined)
 
 Bug fixing:
 
