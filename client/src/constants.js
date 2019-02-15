@@ -1,4 +1,5 @@
 export const URL = 'https://us-central1-tw-account-deletion-challenge.cloudfunctions.net'; 
+export const spinnerUrl = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'; 
 
 export const feedbackSurveyItems = [
   {

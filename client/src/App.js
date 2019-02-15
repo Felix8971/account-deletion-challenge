@@ -39,16 +39,12 @@ export default class App extends React.Component {
 
   resetTerminateAccountStatus = () => {
     this.setState({
-      terminateAccountStatus: { status: null }, //LoadState.pending,
+      terminateAccountStatus: { status: null },
     })
   };
 
   redirectToHomepage = () => {
-    ///alert("The account has been deleted !");
-    console.log('redirectToHomepage !');
-    setTimeout(() => {
-      window.location = 'http://www.example.com/';
-    }, 2000);
+    window.location = 'http://www.example.com/';
   };
 
   render() {

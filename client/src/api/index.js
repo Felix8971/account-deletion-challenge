@@ -15,7 +15,6 @@ export const fetchRelatedWorkspaces = (ctx) => () => {
   fetch(`${URL}/fetchWorkspaces?userId=${ctx.state.user._id}`, {mode: 'cors'})
     .then( (response) => {
       response.json().then( (data) => {
-        console.log('data=', data);
         ctx.setState({
           loading: false,
           requiredTransferWorkspaces: data.requiredTransferWorkspaces,
@@ -87,3 +86,4 @@ export const terminateAccount =  ctx => payload => {
   })
     .catch(error => console.error('Error:', error));
 };
+

@@ -60,7 +60,7 @@ class FeedbackSurveyModal extends React.PureComponent {
   renderCommentForm() {
     if (!this.props.showCommentForm) return
     return (
-      <div style={{ marginTop: '2rem' }}>
+      <div style={{ marginTop: '1rem' }}>
         Comments:
         <div>
           <textarea

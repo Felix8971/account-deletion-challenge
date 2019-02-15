@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { URL } from './constants.js';
+import { URL } from '../constants.js';
 
 const CANCEL_WORKSPACE = {
   PAGE_ID: '48414504',

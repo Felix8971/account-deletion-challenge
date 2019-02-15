@@ -17,7 +17,6 @@ const COMMENT_ID = '164973120'
 
 module.exports = functions.https.onRequest((request, response) =>
   cors(request, response, async () => {
-    console.groupCollapsed("submitSurvey");
     if (request.method !== 'POST') {
       return response.sendStatus(405)
     }

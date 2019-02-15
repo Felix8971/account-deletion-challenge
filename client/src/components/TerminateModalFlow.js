@@ -5,7 +5,7 @@ import ConfirmEmailModal from './ConfirmEmailModal';
 import TransferOwnershipModal from './TransferOwnershipModal';
 import WorkspaceGroupRows from './WorkspaceGroupRows';
 import FeedbackSurveyModal from './FeedbackSurveyModal';
-import { submitToSurveyMonkeyDeleteAccount } from '../SurveyService';
+import { submitToSurveyMonkeyDeleteAccount } from '../api/SurveyService';
 import { isLoaded, pending } from '../LoadState';
 import AssignOwnership from './AssignOwnership';
 
@@ -28,7 +28,7 @@ export default class TerminateModalFlow extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if ( isLoaded(nextProps.terminateAccountStatus)) {
-      this.props.redirectToHomepage();
+      //this.props.redirectToHomepage();
     }
   }
 
@@ -126,9 +126,17 @@ export default class TerminateModalFlow extends React.Component {
   onChangeComment = e => {
     this.setState({ comment: e.target.value })
   }
-
+  
+  isEmailValid = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;// eslint-disable-line
+    return re.test(String(email).toLowerCase());
+  }
+  
   onDeleteAccount = async () => {
-    if (this.props.user.email === this.state.email) {
+    if ( !this.isEmailValid(this.state.email) ) {
+      const error = 'Please enter a valide email address';
+      this.props.terminateAccountError(error);
+    } else if (this.props.user.email === this.state.email) {
       const payload = {
         transferTargets: _.map(this.getTransferData(), assign => ({
           userId: assign.toUser._id,
@@ -138,8 +146,8 @@ export default class TerminateModalFlow extends React.Component {
       }
       this.props.terminateAccount(payload);
     } else {
-      const error = 'Invalid email'
-      this.props.terminateAccountError(error)
+      const error = 'Invalid email address';
+      this.props.terminateAccountError(error);
     }
   }
 
@@ -208,7 +216,9 @@ export default class TerminateModalFlow extends React.Component {
             isEmailValid={this.state.isEmailValid}
             onTypeEmail={this.onTypeEmail}
             terminateAccountStatus={this.props.terminateAccountStatus}
+            terminateAccountError={this.props.terminateAccountError}
             resetTerminateAccountStatus={this.props.resetTerminateAccountStatus}
+            redirectToHomepage ={this.props.redirectToHomepage}
           />
         )
     }

@@ -1,27 +1,26 @@
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import { isLoading, isLoaded } from '../LoadState'
+import { spinnerUrl } from  '../constants';
 
 class ConfirmEmailModal extends React.PureComponent {
 
   constructor(props) {
     super(props)
     this.state = { 
-      markedConsequences: false, isEmailValid: true,
+      markedConsequences: false, 
     }
   }
 
   componentWillUnmount() {
-    console.log('resetTerminateAccountStatus');
     this.props.resetTerminateAccountStatus();
   }
 
-  getStateButton = () => {
+  isButtonDisable = () => {
     if ( isLoading(this.props.terminateAccountStatus) ) { 
       return true;
-    } else if (this.state.markedConsequences && this.props.email && this.state.isEmailValid) { 
+    } else if (this.state.markedConsequences && this.props.email.length > 5 ) { 
       return false;
     }
     return true;
@@ -31,13 +30,19 @@ class ConfirmEmailModal extends React.PureComponent {
     this.setState({ markedConsequences: !this.state.markedConsequences })
   }
 
-  handleBlurEmail = (e) => {
-    const email = e.target.value;
+  isEmailValid = (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;// eslint-disable-line
-    this.setState({ 
-      isEmailValid: re.test(String(email).toLowerCase()),
-    });
+    return re.test(String(email).toLowerCase());
   }
+
+  /*handleBlurEmail = (e) => {
+    if ( !this.isEmailValid(e.target.value) ) {
+      const error = 'Please enter a valide email address';
+      this.props.terminateAccountError(error);
+    } else {
+      this.props.terminateAccountError('');
+    }
+  }*/
 
   renderFormInputPasssword = () => {
     const errorMessage = get(this.props.terminateAccountStatus, 'error', null)
@@ -49,27 +54,31 @@ class ConfirmEmailModal extends React.PureComponent {
           style={{ width: '350px' }}
           value={this.props.email}
           onChange={this.props.onTypeEmail}
-          onBlur={this.handleBlurEmail}
+          //onBlur={this.handleBlurEmail}
         />
         <div style={{ color: 'red' }}>{errorMessage}</div>
-        { !this.state.isEmailValid && <div style={{ color: 'red', marginTop:'10px' }}>Please enter a valid email</div> }
       </div>
     )
   }
 
   render() {
     const { markedConsequences } = this.state;
-    const { onClickToDelete, onBackButton, terminateAccountStatus } = this.props;
-    console.log('terminateAccountStatus=',terminateAccountStatus);
+    const { 
+      onClickToDelete,
+      onBackButton,
+      terminateAccountStatus,
+      redirectToHomepage,
+    } = this.props;
+   
     if ( isLoading(terminateAccountStatus) ) {
       return (
-        <img className="spinner" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+        <img className="spinner" src={spinnerUrl} />
       )
     } else if ( isLoaded(terminateAccountStatus) ) {
       return (
         <div className="deleted">
-          <p>The account has been deleted !</p>
-          <p>You will be redirected in 2s...</p>
+          <div>The account has been deleted !</div>
+          <button onClick={() => { redirectToHomepage() }}>OK</button>
         </div>
       )
     } else {
@@ -92,7 +101,7 @@ class ConfirmEmailModal extends React.PureComponent {
             <button onClick={onBackButton}>Back</button>
             <button
               onClick={onClickToDelete}
-              disabled={this.getStateButton()}
+              disabled={this.isButtonDisable()}
             >
               Delete my account
             </button>
@@ -109,7 +118,9 @@ ConfirmEmailModal.propTypes = {
   email: PropTypes.string,
   onTypeEmail: PropTypes.func,
   resetTerminateAccountStatus: PropTypes.func,
+  terminateAccountError: PropTypes.func,
   terminateAccountStatus: PropTypes.object,
+  redirectToHomepage: PropTypes.func,
 }
 
 export default ConfirmEmailModal

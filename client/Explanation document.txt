@@ -1,0 +1,61 @@
+
+Code refactoring & reorganization:
+
+1) Create App container and call simply <App/> without any props in index.js :
+  - This is more readable and easy to understand 
+  - The index file does just one thing: inserting app in the document (Single Responsibility Principle)
+
+2) In App container I keep state as a plain object 
+   - The react state contained functions, it is better to have them as component methods 
+     (they are not supposed to change so  it doesn't make sense to put them in the component's state). 
+
+3) Move components to a components directory
+   - There were too much files in client folder so I put components in a separate folder (I let index.js and App.js in /client) 
+
+4) Separate api calls from components
+   - It's better to put our api call functions in a separate folder (separation of concerns principle)
+    
+5) Create public folder for static files
+   - It's a common practice to put static files like images, fonts, css and html in a separate folder.
+
+6) I used object destructuring notation as much as possible
+
+7) Refactoring in transferOwnership function (DRY principle)
+
+8) Fix lint errors
+  - use lint has a lot of benefits such as readability, improve code quality, finding syntax errors before execution, etc
+
+
+Bug fixing:
+
+1) Fix favicon error, fix bug on submit survey, etc.
+
+Test: 
+
+I use Jest and Enzyme:
+PASS  src/components/__tests__/App.react.test.js
+PASS  src/components/__tests__/WorkspaceGroupRows.react.test.js
+
+New features added:
+
+1) Email adress validation (check if the email format is valid befost the post).
+2) Add a spinner when clic on delete account button for a better user experience.
+3) Add a message if the operation is successfull (the user must be inform).
+4) If the delete account request fails the user is invited to try again.
+5) When the user change the email, we save it in the state so that it will be save if he used the back button (I choosed not to save the survey options)
+
+Possible other improvments:
+
+1) We could use redux to manage the state but the app is small so I hesitated to do it (Over-engineering ?).
+2) Improve the css and make the thing responsive.
+3) Use axios in api call: supports Internet Explorer verison 8 and newer, allowing web application to be compatible with a wider range of browsers.
+
+
+To get started:
+git clone https://github.com/Felix8971/account-deletion-challenge.git
+cd account-deletion-challenge/client
+run npm install 
+run npm run serve
+visit http://localhost:1234/
+
+test: run npm test (or npm test -u to delete snapshots)

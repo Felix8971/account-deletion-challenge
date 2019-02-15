@@ -39,8 +39,9 @@ button:disabled {
 }
 
 .deleted {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top:50%;
+  height:100px;
+  margin-top: -50px;
 }
