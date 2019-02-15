@@ -1,8 +1,17 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-
+import styled from 'styled-components';
 import { isLoading, isError } from '../LoadState';
+
+const Container= styled.div`
+  text-decoration: underline;
+  cursor: pointer; 
+`;
+
+const Select= styled.select`
+  min-width: 3rem; 
+`;
 
 export default class AssignOwnership extends React.Component {
 
@@ -24,11 +33,10 @@ export default class AssignOwnership extends React.Component {
 
   render() {
     return (
-      <div style={{ textDecoration: 'underline', cursor: 'pointer' }}>
-        <select
+      <Container>
+        <Select
           value={this.getAddedMember()}
           onChange={this.onAssignToUser}
-          style={{ minWidth: '3rem' }}
         >
           <option value="" disabled />
           {this.props.workspace.transferableMembers.map(user => (
@@ -36,8 +44,8 @@ export default class AssignOwnership extends React.Component {
               {user.name}
             </option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </Container>
     )
   }
 }

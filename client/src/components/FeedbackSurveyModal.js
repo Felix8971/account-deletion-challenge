@@ -1,7 +1,7 @@
 import { map, chain, every } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-
+import Button from './Button';
 import { feedbackSurveyItems } from '../constants'
 
 class FeedbackSurveyModal extends React.PureComponent {
@@ -49,15 +49,16 @@ class FeedbackSurveyModal extends React.PureComponent {
   renderButtons() {
     return (
       <div>
-        <button onClick={this.props.onBackButton}>Back</button>
-        <button onClick={this.props.onSubmit} disabled={this.hasAllUnchecked()}>
+        <Button onClick={this.props.onBackButton}>Back</Button>
+        <Button onClick={this.props.onSubmit} disabled={this.hasAllUnchecked()}>
           Next
-        </button>
+        </Button>
       </div>
     )
   }
 
   renderCommentForm() {
+    const { onChangeComment, comment } = this.props;
     if (!this.props.showCommentForm) return
     return (
       <div style={{ marginTop: '1rem' }}>
@@ -71,8 +72,8 @@ class FeedbackSurveyModal extends React.PureComponent {
                 ? { border: '1px solid blue' }
                 : { border: '1px solid black' }
             }
-            onChange={this.props.onChangeComment}
-            value={this.props.comment}
+            onChange={onChangeComment}
+            value={comment}
           />
         </div>
       </div>

@@ -1,4 +1,13 @@
 
+To get started:
+
+git clone https://github.com/Felix8971/account-deletion-challenge.git
+cd account-deletion-challenge/client
+run npm install 
+run npm run serve
+visit http://localhost:1234/
+test: run npm test (or npm test -u to delete snapshots)
+
 Code refactoring & reorganization:
 
 1) Create App container and call simply <App/> without any props in index.js :
@@ -25,6 +34,11 @@ Code refactoring & reorganization:
 8) Fix lint errors
   - use lint has a lot of benefits such as readability, improve code quality, finding syntax errors before execution, etc
 
+9) Use styled-component for css
+  - because inserting style inside the tag will not be maintainable in the long term.
+
+10) Create a reusable Button component
+
 
 Bug fixing:
 
@@ -44,18 +58,11 @@ New features added:
 4) If the delete account request fails the user is invited to try again.
 5) When the user change the email, we save it in the state so that it will be save if he used the back button (I choosed not to save the survey options)
 
-Possible other improvments:
+Possible other improvements:
 
 1) We could use redux to manage the state but the app is small so I hesitated to do it (Over-engineering ?).
 2) Improve the css and make the thing responsive.
-3) Use axios in api call: supports Internet Explorer verison 8 and newer, allowing web application to be compatible with a wider range of browsers.
+3) Use axios in api call: supports Internet Explorer version 8 and newer, allowing web application to be compatible with a wider range of browsers.
 
 
-To get started:
-git clone https://github.com/Felix8971/account-deletion-challenge.git
-cd account-deletion-challenge/client
-run npm install 
-run npm run serve
-visit http://localhost:1234/
 
-test: run npm test (or npm test -u to delete snapshots)

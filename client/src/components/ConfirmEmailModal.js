@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { isLoading, isLoaded } from '../LoadState'
 import { spinnerUrl } from  '../constants';
-
+import Button from './Button';
 class ConfirmEmailModal extends React.PureComponent {
 
   constructor(props) {
@@ -78,7 +78,7 @@ class ConfirmEmailModal extends React.PureComponent {
       return (
         <div className="deleted">
           <div>The account has been deleted !</div>
-          <button onClick={() => { redirectToHomepage() }}>OK</button>
+          <Button onClick={() => { redirectToHomepage() }}>OK</Button>
         </div>
       )
     } else {
@@ -98,13 +98,13 @@ class ConfirmEmailModal extends React.PureComponent {
             </label>
           </div>
           <div>
-            <button onClick={onBackButton}>Back</button>
-            <button
+            <Button onClick={onBackButton}>Back</Button>
+            <Button
               onClick={onClickToDelete}
               disabled={this.isButtonDisable()}
             >
               Delete my account
-            </button>
+            </Button>
           </div>
         </div>
       )

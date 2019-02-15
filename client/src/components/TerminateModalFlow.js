@@ -6,7 +6,7 @@ import TransferOwnershipModal from './TransferOwnershipModal';
 import WorkspaceGroupRows from './WorkspaceGroupRows';
 import FeedbackSurveyModal from './FeedbackSurveyModal';
 import { submitToSurveyMonkeyDeleteAccount } from '../api/SurveyService';
-import { isLoaded, pending } from '../LoadState';
+import { pending } from '../LoadState';
 import AssignOwnership from './AssignOwnership';
 
 export default class TerminateModalFlow extends React.Component {
@@ -24,12 +24,6 @@ export default class TerminateModalFlow extends React.Component {
 
   componentDidMount() {
     this.props.fetchRelatedWorkspaces();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if ( isLoaded(nextProps.terminateAccountStatus)) {
-      //this.props.redirectToHomepage();
-    }
   }
 
   getTransferData = () => {

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Button from './Button';
 
 export const TransferOwnershipModal = props => {
   const renderLoading = () => <div>Loading...</div>
@@ -11,9 +12,9 @@ export const TransferOwnershipModal = props => {
         workspace admin rights to other person.
       </p>
       {props.loading ? renderLoading() : props.children}
-      <button disabled={props.disabledNextPage} onClick={props.nextPage}>
+      <Button disabled={props.disabledNextPage} onClick={props.nextPage}>
         Next
-      </button>
+      </Button>
     </div>
   )
 }
