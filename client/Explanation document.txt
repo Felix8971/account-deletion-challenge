@@ -64,5 +64,3 @@ Possible other improvements if more time:
 2) Improve the css and make the thing responsive.
 3) Use axios in api call: supports Internet Explorer version 8 and newer, allowing web application to be compatible with a wider range of browsers.
 
-
-
