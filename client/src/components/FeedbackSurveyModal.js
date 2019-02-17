@@ -65,7 +65,6 @@ class FeedbackSurveyModal extends React.PureComponent {
         Comments:
         <div>
           <textarea
-            type="text"
             name="comment"
             style={
               this.state.isFocusCommentBox

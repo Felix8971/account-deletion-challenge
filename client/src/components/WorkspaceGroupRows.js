@@ -9,12 +9,12 @@ export const WorkspaceGroupRows = props =>
       <div>
         { map(props.workspaces, workspace => (
           <div key={workspace.spaceId} style={{ marginTop: '1rem' }}>
-            <span>Workspace: {workspace.displayName}</span>
-            <span>
+            <div>Workspace: {workspace.displayName}</div>
+            <div>
               {React.Children.count(props.children) === 0
                 ? null
                 : React.cloneElement(props.children, { workspace })}
-            </span>
+            </div>
           </div>
         ))}
       </div>

@@ -81,7 +81,7 @@ export default class TerminateModalFlow extends React.Component {
     if (!_.isEmpty(this.refs)) {
       const surveyPayload = {
         feedbackRefs: this.getRefsValues(this.refs, 'feedbackForm'),
-        comment: '',
+        comment: this.state.comment,
       }
       submitToSurveyMonkeyDeleteAccount(surveyPayload);
     }
@@ -89,9 +89,9 @@ export default class TerminateModalFlow extends React.Component {
 
   onSetNextPage = () => {
     if (this.state.activeModal === 'transfer') {
-      this.setState({ activeModal: 'feedback' })
+      this.setState({ activeModal: 'feedback' });
     } else if (this.state.activeModal === 'feedback') {
-      const feedbackRefs = this.getRefsValues(this.refs, 'feedbackForm')
+      const feedbackRefs = this.getRefsValues(this.refs, 'feedbackForm');
       this.setState({
         activeModal: 'confirm',
         feedbacks: _.map(feedbackRefs, ref => ({
@@ -100,7 +100,7 @@ export default class TerminateModalFlow extends React.Component {
         })),
       })
     }
-    this.submitSurvey()
+    this.submitSurvey();
   }
 
   onGoToPreviousStep = () => {
