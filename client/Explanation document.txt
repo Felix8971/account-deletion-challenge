@@ -42,7 +42,7 @@ Code refactoring & reorganization:
 
 Bug fixing:
 
-1) Fix favicon error, fix bug on submit survey, etc.
+1) Fix favicon error, fix bug on submit survey, Fix W3C errors, etc.
 
 Test: 
 
@@ -58,7 +58,7 @@ New features added:
 4) If the delete account request fails the user is invited to try again.
 5) When the user change the email, we save it in the state so that it will be save if he used the back button (I choosed not to save the survey options)
 
-Possible other improvements:
+Possible other improvements if more time:
 
 1) We could use redux to manage the state but the app is small so I hesitated to do it (Over-engineering ?).
 2) Improve the css and make the thing responsive.

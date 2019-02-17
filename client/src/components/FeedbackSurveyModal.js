@@ -68,10 +68,11 @@ class FeedbackSurveyModal extends React.PureComponent {
             name="comment"
             style={
               this.state.isFocusCommentBox
-                ? { border: '1px solid blue' }
+                ? { border: '2px solid blue' }
                 : { border: '1px solid black' }
             }
             onChange={onChangeComment}
+            onFocus={this.onFocusCommentBox}
             value={comment}
           />
         </div>
